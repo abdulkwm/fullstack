@@ -1,0 +1,44 @@
+version: '3'
+services:
+  backend:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    image: myapp
+    container_name: spring-container
+    ports:
+      - "7070:9191"
+    depends_on:
+      - database
+    networks:
+      - my-net
+    env_file:
+      - spring.env
+#    environment:
+#      - MYSQL_HOST=database
+#      - MYSQL_PORT=3306
+#      - MYSQL_DATABASE=mydatabase
+#      - MYSQL_USER=user
+#      - MYSQL_PASSWORD=password
+  database:
+    image: mysql
+    container_name: mysql-container
+    ports:
+      - "3307:3306"
+    networks:
+      - my-net
+    volumes:
+      - my-vol:/var/lib/mysql
+    env_file:
+      - database.env
+#    environment:
+#      - MYSQL_ROOT_PASSWORD=root
+#      - MYSQL_USER=user
+#      - MYSQL_PASSWORD=password
+#      - MYSQL_DATABASE=mydatabase
+networks:
+  my-net:
+    external: true
+volumes:
+  my-vol:
+    external: true
