@@ -20,6 +20,17 @@ services:
 #      - MYSQL_DATABASE=mydatabase
 #      - MYSQL_USER=user
 #      - MYSQL_PASSWORD=password
+#  frontend:
+#    image: ui-react:1.0
+#    container_name: react-ui
+#    ports:
+#      - "3322:3322"
+#    depends_on:
+#      - backend
+#    networks:
+#      - my-net
+#    environment:
+#      - REACT_APP_URL=http://spring-container:9191
   database:
     image: mysql
     container_name: mysql-container
