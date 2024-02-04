@@ -16,7 +16,7 @@
 	<properties>
 		<java.version>17</java.version>
 		<sonar.host.url>http://localhost:8090</sonar.host.url>
-<!--		<sonar.login>your-sonarqube-token</sonar.login>-->
+		<sonar.token>my-token</sonar.token>
 	</properties>
 	<dependencies>
 		<dependency>
@@ -106,7 +106,6 @@
 				<groupId>org.jacoco</groupId>
 				<artifactId>jacoco-maven-plugin</artifactId>
 				<version>0.8.10</version>
-
 				<executions>
 					<execution>
 						<goals>
