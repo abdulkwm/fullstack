@@ -3,6 +3,7 @@ package com.example.studentbackend;
 import com.example.studentbackend.model.Student;
 import com.example.studentbackend.repository.StudentRepository;
 import lombok.RequiredArgsConstructor;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
@@ -14,7 +15,8 @@ public class StudentBackendApplication implements CommandLineRunner {
 	public static void main(String[] args) {
 		SpringApplication.run(StudentBackendApplication.class, args);
 	}
-	private StudentRepository studentRepository;
+	@Autowired
+	private final StudentRepository studentRepository;
 	@Override
 	public void run(String... args) throws Exception {
 		Student student1 = Student.builder()
