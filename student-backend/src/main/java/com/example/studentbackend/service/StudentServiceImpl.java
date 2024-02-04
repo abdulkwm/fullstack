@@ -5,7 +5,7 @@ import com.example.studentbackend.exception.ResourceNotFoundException;
 import com.example.studentbackend.model.Student;
 import com.example.studentbackend.repository.StudentRepository;
 import lombok.RequiredArgsConstructor;
-import org.springframework.beans.factory.annotation.Autowired;
+import org.modelmapper.ModelMapper;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -15,8 +15,8 @@ import java.util.stream.Collectors;
 @Service
 @RequiredArgsConstructor
 public class StudentServiceImpl implements StudentService {
-    @Autowired
     private final StudentRepository studentRepository;
+    private final ModelMapper modelMapper;
     @Override
     public Student saveStudent(Student student) {
         Student stu = studentRepository.save(student);
@@ -26,13 +26,18 @@ public class StudentServiceImpl implements StudentService {
     @Override
     public StudentDTO getStudentById(int id) {
         Student student = studentRepository.findById(id).orElseThrow(()-> new ResourceNotFoundException("the student is not found"));
-        return convertToDTO(student);
+        return modelMapper.map(student,StudentDTO.class);
+//        return convertToDTO(student);
     }
 
     @Override
     public List<StudentDTO> getAllStudents() {
         List<Student> students = studentRepository.findAll();
-        return convertToDTOList(students);
+        List<StudentDTO> studentDTOStream = students.stream()
+                .map(element -> modelMapper.map(element, StudentDTO.class))
+                .collect(Collectors.toList());
+        return studentDTOStream;
+//        return convertToDTOList(students);
     }
 
     @Override
