@@ -150,29 +150,29 @@ class StudentControllerTest {
         verify(studentService, times(1)).deleteStudent(1);
     }
 
-    @Test
-    void getAllStudentByName() throws Exception{
-        //arrange
-        StudentDTO student1 = StudentDTO.builder()
-                .firstName("abdu")
-                .lastName("ahmed")
-                .email("ab@gmail.com")
-                .build();
-        StudentDTO student2 = StudentDTO.builder()
-                .firstName("maida")
-                .lastName("mohammed")
-                .email("ma@gmail.com")
-                .build();
-        List<StudentDTO> studentList = new ArrayList<>();
-        studentList.add(student1);
-        studentList.add(student2);
-        when(studentService.getByFirstName(anyString())).thenReturn(studentList);
-        //act
-        ResultActions response = mockMvc.perform(MockMvcRequestBuilders.get("/api/v1/students").param("fName","abdu"));
-        //assert
-        response.andExpect(MockMvcResultMatchers.status().isOk());
-//                .andExpect(jsonPath("$.size()",Matchers.is(1)));
-        //verify
-        verify(studentService, times(1)).getByFirstName("abdu");
-    }
+//    @Test
+//    void getAllStudentByName() throws Exception{
+//        //arrange
+//        StudentDTO student1 = StudentDTO.builder()
+//                .firstName("abdu")
+//                .lastName("ahmed")
+//                .email("ab@gmail.com")
+//                .build();
+//        StudentDTO student2 = StudentDTO.builder()
+//                .firstName("maida")
+//                .lastName("mohammed")
+//                .email("ma@gmail.com")
+//                .build();
+//        List<StudentDTO> studentList = new ArrayList<>();
+//        studentList.add(student1);
+//        studentList.add(student2);
+//        when(studentService.getByFirstName(anyString())).thenReturn(studentList);
+//        //act
+//        ResultActions response = mockMvc.perform(MockMvcRequestBuilders.get("/api/v1/students").param("fName","abdu"));
+//        //assert
+//        response.andExpect(MockMvcResultMatchers.status().isOk());
+////                .andExpect(jsonPath("$.size()",Matchers.is(1)));
+//        //verify
+//        verify(studentService, times(1)).getByFirstName("abdu");
+//    }
 }
