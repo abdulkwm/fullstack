@@ -26,18 +26,13 @@ public class StudentServiceImpl implements StudentService {
     @Override
     public StudentDTO getStudentById(int id) {
         Student student = studentRepository.findById(id).orElseThrow(()-> new ResourceNotFoundException("the student is not found"));
-        return modelMapper.map(student,StudentDTO.class);
-//        return convertToDTO(student);
+        return convertToDTO(student);
     }
 
     @Override
     public List<StudentDTO> getAllStudents() {
         List<Student> students = studentRepository.findAll();
-        List<StudentDTO> studentDTOStream = students.stream()
-                .map(element -> modelMapper.map(element, StudentDTO.class))
-                .collect(Collectors.toList());
-        return studentDTOStream;
-//        return convertToDTOList(students);
+        return convertToDTOList(students);
     }
 
     @Override
