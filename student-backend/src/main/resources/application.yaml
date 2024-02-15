@@ -3,13 +3,9 @@ spring:
     ansi:
       enabled: ALWAYS
   datasource:
-    url: jdbc:mysql://${MYSQL_HOST:localhost}:${MYSQL_PORT:3306}/${MYSQL_DATABASE:studentdb}
-    username: ${MYSQL_USER:root}
-    password: ${MYSQL_PASSWORD:abdulkwm}
-    driver-class-name: com.mysql.cj.jdbc.Driver
-
+    url: jdbc:mysql://${HOST:database-1-abdulkerimahmed14-df47.a.aivencloud.com}:${PORT:16919}/${DB_NAME:defaultdb}
+    username: ${DB_USER:avnadmin}
+    password: ${DB_PASSWORD:AVNS_vxGVT7IwDwO66-xVHkv}
   jpa:
     hibernate:
       ddl-auto: create
-server:
-  port: 9191

@@ -22,9 +22,7 @@ public class MvcStudentController {
         return "student/list";
     }
     @GetMapping("/hello")
-    public String getHello(Model model){
-        List<StudentDTO> list = studentService.getAllStudents();
-        model.addAttribute("students",list);
+    public String getHello(){
         return "student/hello";
     }
 }
