@@ -1,7 +1,7 @@
 apiVersion: v1
 kind: PersistentVolumeClaim
 metadata:
-  name: mypvc-1
+  name: mypvc
 spec:
   resources:
     requests:
@@ -52,14 +52,14 @@ spec:
               valueFrom:
                 configMapKeyRef:
                   name: app-config
-                  key: mysql-database
+                  key: mysql_database
           volumeMounts:
             - name: data
               mountPath: /var/lib/mysql
       volumes:
         - name: data
           persistentVolumeClaim:
-            claimName: mypvc-1
+            claimName: mypvc
 ---
 apiVersion: v1
 kind: Service
