@@ -28,7 +28,6 @@ class StudentServiceImplTest {
     @InjectMocks
     private StudentServiceImpl studentService;
 
-
     @Test
     @DisplayName("save")
     void saveStudent() {

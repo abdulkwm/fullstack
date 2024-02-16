@@ -14,7 +14,7 @@ import java.util.List;
 @RestController
 @RequestMapping("/api/v1/students")
 @RequiredArgsConstructor
-@CrossOrigin("http://${REACT_HOST:localhost}:${REACT_PORT:3322}/")
+//@CrossOrigin("http://${REACT_HOST:localhost}:${REACT_PORT:3322}/")
 public class StudentController {
 
     private final StudentService studentService;
