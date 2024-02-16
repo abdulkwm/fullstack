@@ -16,14 +16,39 @@ spec:
         - name: myapp-cont
           image: abdu14/spring-app
           ports:
-            - containerPort: 8080
-              name: my-port
+            - name: my-port
+              containerPort: 8080
           env:
             - name: HOST
+              # value: mysql-svc
               valueFrom:
                 configMapKeyRef:
-                  name:
-                  value:
+                  name: app-config
+                  key: mysql_host
+            - name: PORT
+#              value: "3307"
+              valueFrom:
+                configMapKeyRef:
+                  name: app-config
+                  key: mysql_port
+            - name: DB_NAME
+#              value: testdb
+              valueFrom:
+                configMapKeyRef:
+                  name: app-config
+                  key: mysql_database
+            - name: DB_USER
+#              value: testu
+              valueFrom:
+                secretKeyRef:
+                  name: app-secret
+                  key: mysql-user
+            - name: DB_PASSWORD
+#              value: testp
+              valueFrom:
+                secretKeyRef:
+                  name: app-secret
+                  key: mysql-pass
 ---
 apiVersion: v1
 kind: Service
@@ -32,9 +57,9 @@ metadata:
 spec:
   selector:
     app: myapp
-  type: NodePort
   ports:
     - name: app-svc-port
       port: 8090
       protocol: TCP
       targetPort: my-port
+  type: NodePort

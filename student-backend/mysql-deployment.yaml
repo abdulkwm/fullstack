@@ -1,7 +1,7 @@
 apiVersion: v1
 kind: PersistentVolumeClaim
 metadata:
-  name: mypvc
+  name: mypvc-1
 spec:
   resources:
     requests:
@@ -30,20 +30,36 @@ spec:
               name: mysql-port
           env:
             - name: MYSQL_ROOT_PASSWORD
-              value: root
+#              value: root
+              valueFrom:
+                secretKeyRef:
+                  name: app-secret
+                  key: root-pass
             - name: MYSQL_USER
-              value: testu
+#              value: testu
+              valueFrom:
+                secretKeyRef:
+                  name: app-secret
+                  key: mysql-user
             - name: MYSQL_PASSWORD
-              value: testp
+#              value: testp
+              valueFrom:
+                secretKeyRef:
+                  name: app-secret
+                  key: mysql-pass
             - name: MYSQL_DATABASE
-              value: testdb
+#              value: testdb
+              valueFrom:
+                configMapKeyRef:
+                  name: app-config
+                  key: mysql-database
           volumeMounts:
             - name: data
               mountPath: /var/lib/mysql
       volumes:
         - name: data
           persistentVolumeClaim:
-            claimName: mypvc
+            claimName: mypvc-1
 ---
 apiVersion: v1
 kind: Service
