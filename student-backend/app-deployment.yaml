@@ -15,6 +15,10 @@ spec:
       containers:
         - name: myapp-cont
           image: abdu14/spring-app
+          resources:
+            limits:
+              memory: "500mi"
+              cpu: "500mi"
           ports:
             - name: my-port
               containerPort: 8080
