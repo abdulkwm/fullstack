@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<h1> Student Detail</h1>
+<div th:if="${student != null}">
+    <p>student ID: <span th:text="${student.getId()}"></span></p>
+    <p>student firstName<span th:text="${student.getFirstName()}"></span></p>
+    <p>student lastName<span th:text="${student.getLastName()}"></span></p>
+    <p>student email<span th:text="${student.getEmail()}"></span></p>
+</div>
+<div th:unless="${student != null}">
+    <p>student is not found</p>
+</div>
+</body>
+</html>
