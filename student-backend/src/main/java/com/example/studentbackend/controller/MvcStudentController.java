@@ -6,6 +6,7 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import java.util.List;
@@ -24,5 +25,11 @@ public class MvcStudentController {
     @GetMapping("/hello")
     public String getHello(){
         return "student/hello";
+    }
+    @GetMapping("/{id}")
+    public String getStudentById(@PathVariable int id, Model model){
+        StudentDTO studentDTO = studentService.getStudentById(id);
+        model.addAttribute("student", studentDTO);
+        return "student/detail";
     }
 }
