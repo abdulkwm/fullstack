@@ -7,6 +7,7 @@ import com.example.studentbackend.service.StudentService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -18,18 +19,23 @@ import java.util.List;
 public class StudentController {
 
     private final StudentService studentService;
-
+    @RequestMapping(path = "/welcome", method = RequestMethod.GET)
+    public String welcome(){
+        return "Welcome";
+    }
     @PostMapping
     public ResponseEntity<Student> createStudent(@RequestBody Student student){
         Student stu = studentService.saveStudent(student);
         return new ResponseEntity<>(stu, HttpStatus.CREATED);
     }
     @GetMapping("/{id}")
+    @PreAuthorize("hasAuthority('ROLE_ADMIN')")
     public ResponseEntity<StudentDTO> getStudent(@PathVariable int id){
         StudentDTO student = studentService.getStudentById(id);
         return new ResponseEntity<>(student, HttpStatus.OK);
     }
    @GetMapping
+   @PreAuthorize(value = "ROLE_USER")
     public ResponseEntity<List<StudentDTO>> getAllStudents(){
         List<StudentDTO> studentDTOList = studentService.getAllStudents();
         return new ResponseEntity<>(studentDTOList, HttpStatus.OK);
