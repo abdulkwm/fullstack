@@ -8,4 +8,4 @@ spring:
     password: ${DB_PASSWORD:AVNS_vxGVT7IwDwO66-xVHkv}
   jpa:
     hibernate:
-      ddl-auto: create
+      ddl-auto: update

@@ -35,7 +35,7 @@ public class StudentController {
         return new ResponseEntity<>(student, HttpStatus.OK);
     }
    @GetMapping
-   @PreAuthorize(value = "ROLE_USER")
+   @PreAuthorize("hasAuthority('ROLE_USER')")
     public ResponseEntity<List<StudentDTO>> getAllStudents(){
         List<StudentDTO> studentDTOList = studentService.getAllStudents();
         return new ResponseEntity<>(studentDTOList, HttpStatus.OK);
