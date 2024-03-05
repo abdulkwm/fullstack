@@ -5,6 +5,7 @@ import com.example.studentbackend.dto.StudentDTO;
 import com.example.studentbackend.model.Student;
 import com.example.studentbackend.service.StudentService;
 import lombok.RequiredArgsConstructor;
+import lombok.extern.java.Log;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;
@@ -16,6 +17,7 @@ import java.util.List;
 @RequestMapping("/api/v1/students")
 @RequiredArgsConstructor
 @CrossOrigin("*")
+@Log
 public class StudentController {
 
     private final StudentService studentService;
